@@ -314,6 +314,12 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
     }
 
+    else if ($_POST['nev'] !== "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] === "" 
+    && $_POST['nem'] === "") {
+        $elefantosHiba = true;
+        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
+    }
+
     
 
     //Csak akkor vehetünk fel új elefántot, ha nincsen hiba!
