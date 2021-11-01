@@ -73,18 +73,67 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $elefantosHiba = true;
             
         }
-    else if (is_numeric($_POST['nev']) && && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
+    else if (is_numeric($_POST['nev']) && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
     && $_POST['nem'] !== "" ) {
         $elefantosHiba = true;
     }
 
-    else if ($_POST['nev']) !== "" &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
+    else if (is_numeric($_POST['nev']) && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+    && $_POST['nem'] === "" ) {
+        $elefantosHiba = true;
+    }
+
+    else if ($_POST['nev'] !== "" &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
     && $_POST['nem'] !== "" ) {
+        $elefantosHiba = true;
+    }
+
+    else if ($_POST['nev'] === "" &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+    && $_POST['nem'] === "" ) {
+        $elefantosHiba = true;
+    }
+
+    else if (is_numeric($_POST['nev']) &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+    && $_POST['nem'] === "" ) {
+        $elefantosHiba = true;
+    }
+
+    else if (is_numeric($_POST['nev']) &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
+    && (is_numeric($_POST['nem']))) {
+        $elefantosHiba = true;
+    }
+
+    else if (is_numeric($_POST['nev']) &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+    && (is_numeric($_POST['nem']))) {
+        $elefantosHiba = true;
+    }
+
+    else if ($_POST['nev'] === "" &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+    && (is_numeric($_POST['nem']))) {
         $elefantosHiba = true;
     }
 
     else if ($_POST['nev'] !== "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
-    && is_numeric($_POST['nem']) !== "" ) {
+    && is_numeric($_POST['nem'])) {
+        $elefantosHiba = true;
+    }
+
+    else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+    && is_numeric($_POST['nem'])) {
+        $elefantosHiba = true;
+    }
+    else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
+    && $_POST['nem'] === "") {
+        $elefantosHiba = true;
+    }
+
+    else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] !== "" && $_POST['suly'] === "" 
+    && $_POST['nem'] === "") {
+        $elefantosHiba = true;
+    }
+
+    else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
+    && $_POST['nem'] === "") {
         $elefantosHiba = true;
     }
 
