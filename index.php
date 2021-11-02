@@ -172,13 +172,13 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     }
 
     else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
-    && $_POST['nem'] !== "") {
+    && !(is_numeric($_POST['nem']) && $_POST['nem'] !== "")) {
         $elefantosHiba = true;
         $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a nem értékén kívül minden mező üres</p>";
     }
 
     else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
-    && is_numeric($_POST['nem']) !== "") {
+    && is_numeric($_POST['nem'])) {
         $elefantosHiba = true;
         $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a nem értéke nem lehet szám és minden mező üres</p>";
     }
@@ -328,6 +328,12 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a súly és a nem mező üres</p>";
     }
 
+    else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] == "" && $_POST['suly'] === "" 
+    && is_numeric($_POST['nem'])) {
+        $elefantosHiba = true;
+        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a nem értéke nem lehet szám és a többi mező üres</p>";
+    }
+
     
 
     //Csak akkor vehetünk fel új elefántot, ha nincsen hiba!
@@ -379,26 +385,26 @@ $gomb = $_POST['gomb'] ?? false;
 
     <form method="POST">
         <div>
-            Név: <input type="text" name="nev" id="neve" placeholder="Elefánt neve">
+            Név: <input type="text" name="nev" id="neve">
             <p class='text-danger' id="hibaN"></p>
         </div>
         <div>
-            Fajta: <input type="text" name="fajta" id="faj" placeholder="Elefánt faja">
+            Fajta: <input type="text" name="fajta" id="faj">
             <p class='text-danger' id="hibaF"></p>
         </div>
         <div>
             Születési dátum: <input type="date" name="szulDatum">
         </div>
         <div>
-            Súly: <input type="number" name="suly" id="sulya" placeholder="Elefánt súlya">
+            Súly: <input type="number" name="suly" id="sulya">
             <p class='text-danger' id="hibaS"></p>
         </div>
         <div>
-            Nem: <input type="text" name="nem" id="neme" placeholder="Elefánt neme">
+            Nem: <input type="text" name="nem" id="neme">
             <p class='text-danger' id="hibaNe"></p>
         </div>
         <div>
-            <input type="submit" value="Új elefánt" name ="gomb" id="elefantGomb">
+            <input type="submit" value="Új elefánt" name ="gomb" class="btn btn-warning" id="elefantGomb">
         </div>
     </form>
     </div>
