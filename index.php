@@ -368,7 +368,12 @@ $gomb = $_POST['gomb'] ?? false;
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1>Elefántok</h1>
+<div class="container-fluid">
+  <div class="jumbotron">
+    <h1>Elefántok</h1>      
+    <h5 class="text-center">Afrikai szavannák állata</h5>
+  </div>     
+</div>
     <div class="container-fluid">
 
     <form method="POST">
@@ -435,7 +440,7 @@ $gomb = $_POST['gomb'] ?? false;
     ?>
 
 
-    
+
 
 
 
