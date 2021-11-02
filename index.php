@@ -67,11 +67,12 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $elefantosHiba = true;
         $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a súly nem lehet nulla és nem lett megadva név, nem és fajta</p>";
          }
-    else if ($_POST['suly'] < 0 && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['nev'] === "" 
+    else if ($_POST['suly'] < 0 && $_POST['suly'] !== "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['nev'] === "" 
     && $_POST['nem'] === "") {
         $elefantosHiba = true;
         $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert nem lehet negatív szám a súly és a többi mező üres</p>";
     }
+    
         
     else if ($_POST['suly'] < 0 && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['nev'] !== "" 
     && $_POST['nem']
@@ -248,7 +249,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $elefantosHiba = true;
         $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a nem mezőben nem lehet szám és a súlyon kívül a többi mező üres </p>";
     }
-    else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
+    else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] !== ""
     && $_POST['nem'] === "") {
         $elefantosHiba = true;
         $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a súlyon kívül a többi mező üres</p>";
@@ -378,22 +379,22 @@ $gomb = $_POST['gomb'] ?? false;
 
     <form method="POST">
         <div>
-            Név: <input type="text" name="nev" id="neve">
+            Név: <input type="text" name="nev" id="neve" placeholder="Elefánt neve">
             <p class='text-danger' id="hibaN"></p>
         </div>
         <div>
-            Fajta: <input type="text" name="fajta" id="faj">
+            Fajta: <input type="text" name="fajta" id="faj" placeholder="Elefánt faja">
             <p class='text-danger' id="hibaF"></p>
         </div>
         <div>
             Születési dátum: <input type="date" name="szulDatum">
         </div>
         <div>
-            Súly: <input type="number" name="suly" id="sulya">
+            Súly: <input type="number" name="suly" id="sulya" placeholder="Elefánt súlya">
             <p class='text-danger' id="hibaS"></p>
         </div>
         <div>
-            Nem: <input type="text" name="nem" id="neme">
+            Nem: <input type="text" name="nem" id="neme" placeholder="Elefánt neme">
             <p class='text-danger' id="hibaNe"></p>
         </div>
         <div>
