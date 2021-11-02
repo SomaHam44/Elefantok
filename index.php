@@ -27,298 +27,308 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
      $ujNem =  $_POST['nem'] ?? '';
 
      if (empty($_POST['nev']) && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== ""
-      && $_POST['nem'] !== "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-     }
-    else if (empty($_POST['fajta']) && $_POST['nev'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== ""
      && $_POST['nem'] !== "") {
-
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-     }
-    else if (empty($_POST['suly']) && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['nev'] !== ""
-     && $_POST['nem']
-     !== "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-     }
-     else if (empty($_POST['nem']) && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
-    && $_POST['nev'] !== "") {
-
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-     }
-    else if ($_POST['suly'] === "0" && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['nev'] !== ""
-     && $_POST['nem']
-         !== "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-         }
-    else if ($_POST['suly'] === "0" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['nev'] === ""
-     && $_POST['nem']
-         === "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-         }
-    else if ($_POST['suly'] === "0" && $_POST['fajta'] === "" && $_POST['szulDatum'] !== "" && $_POST['nev'] === "" 
-    && $_POST['nem']
-         === "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-         }
-    else if ($_POST['suly'] < 0 && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['nev'] === "" 
-    && $_POST['nem'] === "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel,mert a név mező üres!</p>";
     }
-        
-    else if ($_POST['suly'] < 0 && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['nev'] !== "" 
-    && $_POST['nem']
-     !== "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
+   else if (empty($_POST['fajta']) && $_POST['nev'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== ""
+    && $_POST['nem'] !== "") {
+
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel,mert üres a fajta mező</p>";
     }
-    else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
-    && $_POST['nem'] === "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-            
+   else if (empty($_POST['suly']) && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['nev'] !== ""
+    && $_POST['nem']
+    !== "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel,mert üres a súly mező</p>";
+    }
+    else if (empty($_POST['nem']) && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
+   && $_POST['nev'] !== "") {
+
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel,mert üres a nem mező!</p>";
+    }
+   else if ($_POST['suly'] === "0" && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['nev'] !== ""
+    && $_POST['nem']
+        !== "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a súly nem lehet nulla</p>";
         }
-    else if (is_numeric($_POST['nev']) && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
-    && $_POST['nem'] !== "" ) {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
+   else if ($_POST['suly'] === "0" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['nev'] === ""
+    && $_POST['nem']
+        === "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert az összes mező üres és a súly nem lehet nulla</p>";
+        }
+   else if ($_POST['suly'] === "0" && $_POST['fajta'] === "" && $_POST['szulDatum'] !== "" && $_POST['nev'] === "" 
+   && $_POST['nem']
+        === "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a súly nem lehet nulla és nem lett megadva név, nem és fajta</p>";
+        }
+   else if ($_POST['suly'] < 0 && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['nev'] === "" 
+   && $_POST['nem'] === "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert nem lehet negatív szám a súly és a többi mező üres</p>";
+   }
+       
+   else if ($_POST['suly'] < 0 && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['nev'] !== "" 
+   && $_POST['nem']
+    !== "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a súly nem lehet negatív szám</p>";
+   }
+   else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+   && $_POST['nem'] === "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert minden mező megadása kötelező</p>";
+           
+       }
+   else if (is_numeric($_POST['nev']) && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
+   && $_POST['nem'] !== "" ) {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a név nem lehet szám</p>";
+   }
 
-    else if (is_numeric($_POST['nev']) && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
-    && $_POST['nem'] === "" ) {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
+   else if (is_numeric($_POST['nev']) && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+   && $_POST['nem'] === "" ) {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a név nem lehet szám és a többi mező üres</p>";
+   }
 
-    else if (is_numeric($_POST['nev']) && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
-    && $_POST['nem'] === "" ) {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
+   else if (is_numeric($_POST['nev']) && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
+   && $_POST['nem'] === "" ) {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a név nem lehet szám és a fajta, nem és születési dátum üres</p>";
+   }
 
-    else if ($_POST['nev'] !== "" &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
-    && $_POST['nem'] !== "" ) {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
+   else if ($_POST['nev'] !== "" &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
+   && $_POST['nem'] !== "" ) {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a fajta nem lehet szám</p>";
+   }
 
-    else if ($_POST['nev'] === "" &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
-    && $_POST['nem'] === "" ) {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
+   else if ($_POST['nev'] === "" &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
+   && $_POST['nem'] === "" ) {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a fajta nem lehet szám és a súly mezőn kívül a többi üres</p>";
+   }
 
-    else if ($_POST['nev'] === "" &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
-    && $_POST['nem'] === "" ) {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
+   else if ($_POST['nev'] === "" &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+   && $_POST['nem'] === "" ) {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a fajta nem lehet szám és minden másik mező üres</p>";
+   }
 
-    else if (is_numeric($_POST['nev']) &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
-    && $_POST['nem'] === "" ) {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
+   else if (is_numeric($_POST['nev']) &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+   && $_POST['nem'] === "" ) {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a név és fajra nem lehet szám valamint a többi mező üres</p>";
+   }
 
-    else if (is_numeric($_POST['nev']) &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
-    && $_POST['nem'] === "" ) {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
+   else if (is_numeric($_POST['nev']) &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
+   && $_POST['nem'] === "" ) {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert nem lehet szám a név és a fajta és a súly megadásán kívül a többi mező üres</p>";
+   }
 
-    else if (is_numeric($_POST['nev']) &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
-    && (is_numeric($_POST['nem']))) {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
+   else if (is_numeric($_POST['nev']) &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
+   && (is_numeric($_POST['nem']))) {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a nem, fajta és név nem lehet szám és nincsen megadva megfelelő születési dátum</p>";
+   }
 
-    else if (is_numeric($_POST['nev']) &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
-    && (is_numeric($_POST['nem']))) {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-        
-    }
+   else if (is_numeric($_POST['nev']) &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+   && (is_numeric($_POST['nem']))) {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a név,fajta és nemet meghatározó mező értéke nem lehet szám és a másik két mező üres</p>";
+       
+   }
 
-    else if ($_POST['nev'] === "" &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
-    && (is_numeric($_POST['nem']))) {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
+   else if ($_POST['nev'] === "" &&  (is_numeric($_POST['fajta'])) && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+   && (is_numeric($_POST['nem']))) {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a fajta és nem nem lehet szám típusú és a többi mező üres</p>";
+   }
 
-    else if ($_POST['nev'] !== "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
-    && is_numeric($_POST['nem'])) {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
+   else if ($_POST['nev'] !== "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
+   && is_numeric($_POST['nem'])) {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a nem mező értéke nem lehet szám</p>";
+   }
 
-    else if ($_POST['nev'] === "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
-    && $_POST['nem'] === "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
+   else if ($_POST['nev'] === "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+   && $_POST['nem'] === "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a fajta mezőn kívül minden üres</p>";
+   }
 
-    else if ($_POST['nev'] !== "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
-    && $_POST['nem'] === "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
+   else if ($_POST['nev'] !== "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+   && $_POST['nem'] === "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a neven kívül minden üres</p>";
+   }
 
-    else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
-    && $_POST['nem'] !== "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
+   else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+   && $_POST['nem'] !== "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a nem értékén kívül minden mező üres</p>";
+   }
 
-    else if ($_POST['nev'] === "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
-    && $_POST['nem'] !== "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
-
-    else if ($_POST['nev'] !== "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
-    && $_POST['nem'] !== "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
-
-    else if ($_POST['nev'] !== "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
-    && $_POST['nem'] !== "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
-
-    else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
-    && $_POST['nem'] !== "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
-
-    else if ($_POST['nev'] !== "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
-    && $_POST['nem'] === "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
-
-    else if ($_POST['nev'] !== "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
-    && $_POST['nem'] !== "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
-
-    else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
-    && $_POST['nem'] !== "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
-
-    else if ($_POST['nev'] !== "" && $_POST['fajta'] === "" && $_POST['szulDatum'] !== "" && $_POST['suly'] === "" 
-    && $_POST['nem'] === "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
-
-    else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] !== "" && $_POST['suly'] === "" 
-    && $_POST['nem'] === "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
-
-    else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
-    && is_numeric($_POST['nem'])) {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
-
-    else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
-    && is_numeric($_POST['nem'])) {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
-    else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
-    && $_POST['nem'] === "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
-
-    else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] !== "" && $_POST['suly'] === "" 
-    && $_POST['nem'] === "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
-
-    else if ($_POST['nev'] === "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] === "" 
-    && $_POST['nem'] === "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
-
-    else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] !== "" && $_POST['suly'] === "" 
-    && $_POST['nem'] !== "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
-
-    else if ($_POST['nev'] === "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
-    && $_POST['nem'] === "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
-
-    else if ($_POST['nev'] === "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
-    && $_POST['nem'] !== "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
-
-    else if ($_POST['nev'] === "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
-    && $_POST['nem'] === "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
+   else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+   && is_numeric($_POST['nem']) !== "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a nem értéke nem lehet szám és minden mező üres</p>";
+   }
 
 
-    else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
-    && $_POST['nem'] === "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
+   else if ($_POST['nev'] === "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+   && $_POST['nem'] !== "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvéte, mert a fajta és elefánt nemét meghatározó mezőn kívül minden másik üres</p>";
+   }
 
-    else if ($_POST['nev'] === "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] === "" 
-    && $_POST['nem'] !== "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
+   else if ($_POST['nev'] !== "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+   && $_POST['nem'] !== "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert nem lett megadva megfelelő dátum és súly mező üres</p>";
+   }
 
-    else if ($_POST['nev'] !== "" && $_POST['fajta'] === "" && $_POST['szulDatum'] !== "" && $_POST['suly'] === "" 
-    && $_POST['nem'] !== "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
+   else if ($_POST['nev'] !== "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+   && $_POST['nem'] !== "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a név és az elefánt nemén kívül minden mező üres</p>";
+   }
 
-    else if ($_POST['nev'] !== "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
-    && $_POST['nem'] === "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
+   else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
+   && $_POST['nem'] !== "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a súly mező és a nemet meghatározó mezőn kívül a többi mező üres</p>";
+   }
 
-    else if ($_POST['nev'] !== "" && $_POST['fajta'] === "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
-    && $_POST['nem'] === "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
+   else if ($_POST['nev'] !== "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+   && $_POST['nem'] === "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a súly, születési dátum és nem mező üres vagy nem megfelelő</p>";
+   }
 
-    else if ($_POST['nev'] !== "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] === "" 
-    && $_POST['nem'] === "") {
-        $elefantosHiba = true;
-        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel</p>";
-    }
+   else if ($_POST['nev'] !== "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
+   && $_POST['nem'] !== "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert nem megfelelő a születési dátum</p>";
+   }
+
+   else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
+   && $_POST['nem'] !== "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a fajta és név mező üres</p>";
+   }
+
+   else if ($_POST['nev'] !== "" && $_POST['fajta'] === "" && $_POST['szulDatum'] !== "" && $_POST['suly'] === "" 
+   && $_POST['nem'] === "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a fajta, súly és nem mező üres</p>";
+   }
+
+   else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] !== "" && $_POST['suly'] === "" 
+   && $_POST['nem'] === "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a születési dátumon kívül minden üres</p>";
+   }
+
+   else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+   && is_numeric($_POST['nem'])) {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a nem mezőben nem lehet szám és a többi mező üres</p>";
+   }
+
+   else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
+   && is_numeric($_POST['nem'])) {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a nem mezőben nem lehet szám és a súlyon kívül a többi mező üres </p>";
+   }
+   else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
+   && $_POST['nem'] === "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a súlyon kívül a többi mező üres</p>";
+   }
+
+   else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] !== "" && $_POST['suly'] === "" 
+   && $_POST['nem'] === "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a születési dátum lett csak megadva</p>";
+   }
+
+   else if ($_POST['nev'] === "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] === "" 
+   && $_POST['nem'] === "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a fajta és a dátum kivételével a többi mező üres</p>";
+   }
+
+   else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] !== "" && $_POST['suly'] === "" 
+   && $_POST['nem'] !== "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a nemet meghatározó mező és a dártumon kívül a többi mező üres</p>";
+   }
+
+   else if ($_POST['nev'] === "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
+   && $_POST['nem'] === "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a fajta és súly mezőn kívül a többi üres</p>";
+   }
+
+   else if ($_POST['nev'] === "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
+   && $_POST['nem'] !== "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a fajta, súly és a nem mezőn kívül a többi üres</p>";
+   }
+
+   else if ($_POST['nev'] === "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
+   && $_POST['nem'] === "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a név és a nem mező üres</p>";
+   }
+
+
+   else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
+   && $_POST['nem'] === "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert csak a súly lett megadva</p>";
+   }
+
+   else if ($_POST['nev'] === "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] === "" 
+   && $_POST['nem'] !== "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a név és a súly üres</p>";
+   }
+
+   else if ($_POST['nev'] !== "" && $_POST['fajta'] === "" && $_POST['szulDatum'] !== "" && $_POST['suly'] === "" 
+   && $_POST['nem'] !== "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a fajta és a súly mező üres</p>";
+   }
+
+   else if ($_POST['nev'] !== "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] !== "" 
+   && $_POST['nem'] === "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a fajta, dátum és nem mező üres</p>";
+   }
+
+   else if ($_POST['nev'] !== "" && $_POST['fajta'] === "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
+   && $_POST['nem'] === "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a fajta és a nem mező üres</p>";
+   }
+
+   else if ($_POST['nev'] !== "" && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] === "" 
+   && $_POST['nem'] === "") {
+       $elefantosHiba = true;
+       $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a súly és a nem mező üres</p>";
+   }
+
+     
+     
 
     
 
