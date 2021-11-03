@@ -385,22 +385,22 @@ $gomb = $_POST['gomb'] ?? false;
 
     <form method="POST">
         <div>
-            Név: <input type="text" name="nev" id="neve">
+            Név: <input type="text" name="nev" id="neve" required>
             <p class='text-danger' id="hibaN"></p>
         </div>
         <div>
-            Fajta: <input type="text" name="fajta" id="faj">
+            Fajta: <input type="text" name="fajta" id="faj" required>
             <p class='text-danger' id="hibaF"></p>
         </div>
         <div>
-            Születési dátum: <input type="date" name="szulDatum">
+            Születési dátum: <input type="date" name="szulDatum" required>
         </div>
         <div>
-            Súly: <input type="number" name="suly" id="sulya">
+            Súly: <input type="number" name="suly" id="sulya" required>
             <p class='text-danger' id="hibaS"></p>
         </div>
         <div>
-            Nem: <input type="text" name="nem" id="neme">
+            Nem: <input type="text" name="nem" id="neme" required>
             <p class='text-danger' id="hibaNe"></p>
         </div>
         <div>
