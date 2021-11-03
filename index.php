@@ -428,7 +428,7 @@ $gomb = $_POST['gomb'] ?? false;
             echo "<input type='hidden' name='deleteId' value='" . $elefant->getId() . "'>";
             echo "<div class='text-center'><input type='submit' value='Törlés' class='gombok'></div>";
             echo "</form>";
-            echo "<div class='text-center'><a href='szerkesztElefant.php?id=" . $elefant->getId() . "'> <input type='submit' value='Szerkeszt' class='gombok'></a></div>";
+            echo "<div class='text-center'><a href='szerkesztElefant.php?id=" . $elefant->getId() . "'> <input type='submit' value='Szerkesztés' class='gombok'></a></div>";
             echo "</div>";
             echo "</div>";
             
