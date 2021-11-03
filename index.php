@@ -80,7 +80,12 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $elefantosHiba = true;
         $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert a súly nem lehet negatív szám</p>";
     }
-    
+    else if ($_POST['nev'] === "" && $_POST['fajta'] === "" && $_POST['szulDatum'] === "" && $_POST['suly'] === "" 
+    && $_POST['nem'] === "") {
+        $elefantosHiba = true;
+        $sikertelen = "<p class='text-danger'>Sikertelen elefánt felvétel, mert minden mező megadása kötelező</p>";
+            
+        }
     else if (is_numeric($_POST['nev']) && $_POST['fajta'] !== "" && $_POST['szulDatum'] !== "" && $_POST['suly'] !== "" 
     && $_POST['nem'] !== "" ) {
         $elefantosHiba = true;
