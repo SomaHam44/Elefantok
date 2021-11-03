@@ -394,6 +394,7 @@ $gomb = $_POST['gomb'] ?? false;
         </div>
         <div>
             Születési dátum: <input type="date" name="szulDatum" required>
+            <p></p>
         </div>
         <div>
             Súly: <input type="number" name="suly" id="sulya" required>
