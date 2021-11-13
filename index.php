@@ -383,7 +383,7 @@ $gomb = $_POST['gomb'] ?? false;
 </div>
     <div class="container-fluid">
 
-    <form method="POST">
+    <form  method="POST">
         <div>
             Név: <input type="text" name="nev" id="neve" required>
             <p class='text-danger' id="hibaN"></p>
